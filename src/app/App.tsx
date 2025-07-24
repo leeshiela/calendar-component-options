@@ -1,16 +1,13 @@
 import { Container, Flex } from "@chakra-ui/react";
+import MyDatePicker from "./react-daypicker/components/DayPickerCalendar";
 
 export function App() {
   return (
-    <Container
-      display="flex"
-      maxW="600px"
-      mx="auto"
-      justifyContent="center"
-      flexDir="row"
-      pt="10"
-    >
+    <Container display="flex" justifyContent="center" flexDir="column" pt="10">
       <Flex fontSize="3xl">Calendar Component Options</Flex>
+      <Flex>
+        <MyDatePicker />
+      </Flex>
     </Container>
   );
 }
