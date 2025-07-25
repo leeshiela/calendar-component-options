@@ -3,6 +3,7 @@ body {
 }
 
 .rdp-root {
+  --rdp-accent-color: blue;
   --rdp-today-color: white;
 }
 
@@ -35,6 +36,7 @@ body {
   gap: 24px;
 }
 
+/* not working */
 .rdp-chevron {
   fill: lightgray;
 }
@@ -46,10 +48,12 @@ body {
   box-shadow: 3px 3px 3px lightgray;
 }
 
+/* not working */
 .rdp-button_next {
   fill: lightgray;
 }
 
+/* not working */
 .rdp-button_previous {
   fill: lightgray;
 }

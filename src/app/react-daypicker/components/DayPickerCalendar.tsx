@@ -9,8 +9,8 @@ interface SelectedDateType {
 }
 
 export default function MyDatePicker() {
-  const { selected, setSelected } = useState<Date | undefined>();
   const todayDate = new Date();
+  const { selected, setSelected } = useState<Date | undefined>(todayDate);
 
   return (
     <Flex
