@@ -34,6 +34,7 @@ body {
   padding-bottom: 18px;
   padding-right: 24px;
   gap: 24px;
+  text-transform: uppercase;
 }
 
 /* not working */
@@ -46,6 +47,10 @@ body {
   border: 1px solid lightgray;
   padding: 24px;
   box-shadow: 3px 3px 3px lightgray;
+}
+
+.rdp-months {
+  text-transform: uppercase;
 }
 
 /* not working */
