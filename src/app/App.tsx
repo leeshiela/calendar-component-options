@@ -1,5 +1,5 @@
 import { Container, Flex } from "@chakra-ui/react";
-import ReactAriaCalendar from "./react-aria-datepicker/ReactAriaCalendar";
+import AriaCalendar from "./react-aria-datepicker/ReactAriaCalendar";
 
 export function App() {
   return (
@@ -8,11 +8,13 @@ export function App() {
       maxW="600px"
       mx="auto"
       justifyContent="center"
-      flexDir="row"
+      flexDir="column"
       pt="10"
     >
-      <Flex fontSize="3xl">Calendar Component Options</Flex>
-      <ReactAriaCalendar />
+      <Flex fontSize="3xl" justifyContent="center" alignItems="center">
+        Calendar Component Options
+      </Flex>
+      <AriaCalendar />
     </Container>
   );
 }
