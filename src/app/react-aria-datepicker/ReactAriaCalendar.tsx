@@ -12,7 +12,7 @@ import {
 } from "react-aria-components";
 
 export default function AriaCalendar() {
-  const { date, setDate } = useState<Date>();
+  const [date, setDate] = useState<Date>();
   let now = today(getLocalTimeZone());
 
   return (
