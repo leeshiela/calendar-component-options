@@ -14,8 +14,8 @@ const DatePickerCalendar = () => {
 
   const renderDateSelect = () => {
     return (
-      <Button type="button" variant="totallyUnstyled" color={"gray.300"}>
-        <Heading fontSize={"lg"} as="div" mr={2.5} color={"black"}>
+      <Button type="button" variant="totallyUnstyled" color={"black"}>
+        <Heading fontSize={"lg"} as="div" mr={2.5}>
           {formatDate(selectedDate)}
         </Heading>
         {/* <ChevronDownIcon
@@ -50,7 +50,7 @@ const DatePickerCalendar = () => {
           alignItems="flex-start"
           paddingLeft={2}
         >
-          <Heading fontSize={"lg"} as="div">
+          <Heading fontSize={"sm"} as="div">
             {dayjs(date).format("MMMM YYYY")}
           </Heading>
         </Box>
