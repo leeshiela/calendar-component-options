@@ -63,5 +63,7 @@ body {
 }
 
 #chevron-down-arrow {
-  transform: -90deg;
+  transform: rotate(-90deg);
+  width: 24px;
+  height: 24px;
 }
