@@ -2,7 +2,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-First, pick the branch you'd like to open to view the different calendar options.For each branch you are viewing, delete the folder `node modules` and then run `npm install` to install the correct dependencies for the branch.
+First, pick the branch you'd like to open to view the different calendar options. For each branch you are viewing, delete the folder `node modules` and then run `npm install` to install the correct dependencies for the branch.
 
 Then, run the development server:
 
