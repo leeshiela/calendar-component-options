@@ -62,3 +62,7 @@ body {
 .rdp-button_previous {
   fill: lightgray;
 }
+
+.rdp-weekday {
+  text-transform: uppercase;
+}
