@@ -5,12 +5,20 @@ import dayjs from "dayjs";
 import "react-datepicker/dist/react-datepicker.css";
 
 const DatePickerCalendar = () => {
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [calendarOpen, setCalendarOpen] = useState(false);
 
-  const formatDate = (date: Date) => dayjs(date).format("MMM D").toUpperCase();
+  const formatDate = (date: Date | null) => {
+    if (date !== null) {
+      return dayjs(date).format("MMM D").toUpperCase();
+    }
+  };
 
-  const handleChange = (date: Date) => setSelectedDate(date);
+  const handleChange = (date: Date | null) => {
+    if (date !== null) {
+      setSelectedDate(date);
+    }
+  };
 
   const renderDateSelect = () => {
     return (
