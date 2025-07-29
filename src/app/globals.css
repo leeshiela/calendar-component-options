@@ -2,11 +2,6 @@ body {
   font-family: var(--font-roboto) !important;
 }
 
-.rdp-root {
-  --rdp-accent-color: blue;
-  --rdp-today-color: white;
-}
-
 .rdp-day.rdp-today.rdp-selected {
   color: white;
 }
@@ -65,4 +60,8 @@ body {
 
 .rdp-weekday {
   text-transform: uppercase;
+}
+
+#chevron-down-arrow {
+  transform: -90deg;
 }
