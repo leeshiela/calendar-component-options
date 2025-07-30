@@ -2,8 +2,8 @@ body {
   font-family: var(--font-roboto) !important;
 }
 
-.rdp-root {
-  --rdp-selected-border: #0066f1;
+.rdp {
+  --rdp-accent-color: #0066f1;
 }
 
 .rdp-day.rdp-today.rdp-selected {
@@ -15,18 +15,10 @@ body {
   opacity: 1;
 }
 
-.rdp-day_button {
-  border-color: #0066f1;
-}
-
-.rdp-selected.rdp-day_button {
-  border-color: #0066f1;
-}
 .rdp-selected {
   font-weight: bold;
   font-size: large;
   background-color: #0066f1;
-  border-color: 1px solid #0066f1;
   color: white;
   border-radius: 50%;
 }

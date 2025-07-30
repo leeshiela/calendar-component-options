@@ -82,6 +82,19 @@ export default function MyDatePicker() {
     }
   };
 
+  // const ChevronCustom: FC<{
+  //   children: React.ReactNode;
+  // }> = ({ children }) => {
+  //   if (typeof children === "svg") {
+  //     return (
+  //       <Img
+  //         src={"arrow.svg"}
+  //         alt="Chevron Down Arrow"
+  //         width={6}
+  //         height={6}/>
+  //     );
+  // }
+
   return (
     <Flex
       direction="column"
@@ -105,7 +118,9 @@ export default function MyDatePicker() {
                 ? `${selected
                     .toLocaleDateString("en-US", options)
                     .toUpperCase()}`
-                : `Select Date`}
+                : `${todayDate
+                    .toLocaleDateString("en-US", options)
+                    .toUpperCase()}`}
             </Button>
             <Flex alignItems={"end"}>
               <Img
@@ -131,6 +146,7 @@ export default function MyDatePicker() {
               showOutsideDays
               components={{
                 Weekday: WeekDayCustom,
+                // Chevron: ChevronCustom,
               }}
             />
           </Flex>
