@@ -2,18 +2,31 @@ body {
   font-family: var(--font-roboto) !important;
 }
 
+.rdp-root {
+  --rdp-selected-border: #0066f1;
+}
+
 .rdp-day.rdp-today.rdp-selected {
   color: white;
 }
 
 .rdp-day.rdp-outside.rdp-selected {
-  background: blue;
+  background: #0066f1;
+  opacity: 1;
 }
 
+.rdp-day_button {
+  border-color: #0066f1;
+}
+
+.rdp-selected.rdp-day_button {
+  border-color: #0066f1;
+}
 .rdp-selected {
   font-weight: bold;
   font-size: large;
-  background: blue;
+  background-color: #0066f1;
+  border-color: 1px solid #0066f1;
   color: white;
   border-radius: 50%;
 }
@@ -29,12 +42,6 @@ body {
   padding-bottom: 18px;
   padding-right: 24px;
   gap: 24px;
-  text-transform: uppercase;
-}
-
-/* not working */
-.rdp-chevron {
-  fill: lightgray;
 }
 
 .rdp-month {
@@ -48,22 +55,11 @@ body {
   text-transform: uppercase;
 }
 
-/* not working */
-.rdp-button_next {
-  fill: lightgray;
-}
-
-/* not working */
-.rdp-button_previous {
-  fill: lightgray;
-}
-
 .rdp-weekday {
   text-transform: uppercase;
 }
 
 #chevron-down-arrow {
-  transform: rotate(-90deg);
   width: 24px;
   height: 24px;
 }

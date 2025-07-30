@@ -1,30 +1,39 @@
 import {
-  Box,
   Button,
   Flex,
+  Img,
   Popover,
   PopoverContent,
   PopoverTrigger,
   Text,
 } from "@chakra-ui/react";
-import { Dispatch, FC, SetStateAction, useState } from "react";
+import { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/style.css";
-import ChevronDownArrow from "./ChevronDownArrow";
-
-interface SelectedDateType {
-  selected: Date | undefined;
-  setSelected: Dispatch<SetStateAction<Date | undefined>>;
-}
 
 export default function MyDatePicker() {
   const todayDate = new Date();
   const [selected, setSelected] = useState<Date | undefined>(todayDate);
+  const [isCalendarOpen, setIsCalendarOpen] = useState<boolean>(false);
   const options = {
     month: "short",
     day: "numeric",
   };
 
+  useEffect(() => {
+    if (isCalendarOpen) {
+      setIsCalendarOpen(true);
+      console.log("Calendar is open");
+    } else if (!isCalendarOpen) {
+      setIsCalendarOpen(false);
+      console.log("Calendar is closed");
+    }
+  }, [isCalendarOpen]);
+
+  const handleSelect = (date: Date | undefined) => {
+    setSelected(date);
+    setIsCalendarOpen(!isCalendarOpen);
+  };
   const WeekDayCustom: FC<{
     children: React.ReactNode;
   }> = (props) => {
@@ -59,9 +68,17 @@ export default function MyDatePicker() {
           label = "";
       }
 
-      return <th>{label}</th>;
+      return (
+        <th style={{ color: "gray", paddingBottom: "18px", fontWeight: 400 }}>
+          {label}
+        </th>
+      );
     } else {
-      return <th>{children}</th>;
+      return (
+        <th style={{ color: "gray", paddingBottom: "18px", fontWeight: 400 }}>
+          {children}
+        </th>
+      );
     }
   };
 
@@ -76,7 +93,11 @@ export default function MyDatePicker() {
       justifyContent="center"
     >
       <Text fontSize="xl">React DayPicker</Text>
-      <Popover>
+      <Popover
+        isOpen={isCalendarOpen}
+        onOpen={() => setIsCalendarOpen(true)}
+        onClose={() => setIsCalendarOpen(false)}
+      >
         <PopoverTrigger>
           <Flex direction={"row"} gap={2} justifyContent={"space-evenly"}>
             <Button variant={"unstyled"} fontSize={"xl"} pt={4} pb={4}>
@@ -86,7 +107,14 @@ export default function MyDatePicker() {
                     .toUpperCase()}`
                 : `Select Date`}
             </Button>
-            <ChevronDownArrow />
+            <Flex alignItems={"end"}>
+              <Img
+                id="chevron-down-arrow"
+                src={"arrow.svg"}
+                alt="Chevron Down Arrow"
+                transform={isCalendarOpen ? "rotate(90deg)" : "rotate(270deg)"}
+              />
+            </Flex>
           </Flex>
         </PopoverTrigger>
         <PopoverContent borderWidth={0}>
@@ -97,7 +125,7 @@ export default function MyDatePicker() {
               navLayout="after"
               mode="single"
               selected={selected}
-              onSelect={setSelected}
+              onSelect={handleSelect}
               timeZone=""
               weekStartsOn={0}
               showOutsideDays
