@@ -1,10 +1,10 @@
-import { Box, Img } from "@chakra-ui/react";
+import { Box, Flex, Img } from "@chakra-ui/react";
 
 const ChevronDownArrow = () => {
   return (
-    <Box>
+    <Flex alignItems={"end"}>
       <Img id="chevron-down-arrow" src={"arrow.svg"} alt="Chevron Down Arrow" />
-    </Box>
+    </Flex>
   );
 };
 

@@ -78,7 +78,7 @@ export default function MyDatePicker() {
       <Text fontSize="xl">React DayPicker</Text>
       <Popover>
         <PopoverTrigger>
-          <Flex direction={"row"} gap={4} justifyContent={"space-between"}>
+          <Flex direction={"row"} gap={2} justifyContent={"space-evenly"}>
             <Button variant={"unstyled"} fontSize={"xl"} pt={4} pb={4}>
               {selected
                 ? `${selected
@@ -86,9 +86,7 @@ export default function MyDatePicker() {
                     .toUpperCase()}`
                 : `Select Date`}
             </Button>
-            <Box>
-              <ChevronDownArrow />
-            </Box>
+            <ChevronDownArrow />
           </Flex>
         </PopoverTrigger>
         <PopoverContent borderWidth={0}>
