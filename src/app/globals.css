@@ -2,8 +2,9 @@ body {
   font-family: var(--font-roboto) !important;
 }
 
-.rdp {
+.rdp-root {
   --rdp-accent-color: #0066f1;
+  --rdp-selected-border: #0066f1;
 }
 
 .rdp-day.rdp-today.rdp-selected {
@@ -45,6 +46,7 @@ body {
 
 .rdp-months {
   text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .rdp-weekday {
@@ -54,4 +56,10 @@ body {
 #chevron-down-arrow {
   width: 24px;
   height: 24px;
+}
+
+.rdp-chevron {
+  fill: gray;
+  stroke: gray;
+  stroke-width: 1px;
 }

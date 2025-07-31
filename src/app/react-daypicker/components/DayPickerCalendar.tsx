@@ -69,7 +69,15 @@ export default function MyDatePicker() {
       }
 
       return (
-        <th style={{ color: "gray", paddingBottom: "18px", fontWeight: 400 }}>
+        <th
+          style={{
+            color: "gray",
+            paddingBottom: "18px",
+            fontWeight: 400,
+            letterSpacing: "1px",
+            fontSize: "14px",
+          }}
+        >
           {label}
         </th>
       );
