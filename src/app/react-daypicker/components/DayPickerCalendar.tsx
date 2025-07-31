@@ -1,3 +1,4 @@
+import "react-day-picker/style.css";
 import {
   Button,
   Flex,
@@ -7,14 +8,15 @@ import {
   PopoverTrigger,
   Text,
 } from "@chakra-ui/react";
-import { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import { DayPicker } from "react-day-picker";
-import "react-day-picker/style.css";
 
 export default function MyDatePicker() {
   const todayDate = new Date();
   const [selected, setSelected] = useState<Date | undefined>(todayDate);
   const [isCalendarOpen, setIsCalendarOpen] = useState<boolean>(false);
+  // const popoverRef = useRef(null);
+
   const options = {
     month: "short",
     day: "numeric",
@@ -83,25 +85,49 @@ export default function MyDatePicker() {
       );
     } else {
       return (
-        <th style={{ color: "gray", paddingBottom: "18px", fontWeight: 400 }}>
+        <th
+          style={{
+            color: "gray",
+            paddingBottom: "18px",
+            fontWeight: 400,
+            letterSpacing: "1px",
+            fontSize: "14px",
+          }}
+        >
           {children}
         </th>
       );
     }
   };
 
-  // const ChevronCustom: FC<{
-  //   children: React.ReactNode;
-  // }> = ({ children }) => {
-  //   if (typeof children === "svg") {
+  // const CustomInput = forwardRef<HtmlHTMLAttributes<HTMLDivElement>, any>(
+  //   (props, popoverRef) => {
+  //     const options = {
+  //       month: "short",
+  //       day: "numeric",
+  //     };
+
   //     return (
-  //       <Img
-  //         src={"arrow.svg"}
-  //         alt="Chevron Down Arrow"
-  //         width={6}
-  //         height={6}/>
+  //       <Flex direction={"row"} gap={2} justifyContent={"space-evenly"}>
+  //         <Button variant={"unstyled"} fontSize={"xl"} pt={4} pb={4}>
+  //           {selected
+  //             ? `${selected.toLocaleDateString("en-US", options).toUpperCase()}`
+  //             : `${todayDate
+  //                 .toLocaleDateString("en-US", options)
+  //                 .toUpperCase()}`}
+  //         </Button>
+  //         <Flex alignItems={"end"}>
+  //           <Img
+  //             id="chevron-down-arrow"
+  //             src={"arrow.svg"}
+  //             alt="Chevron Down Arrow"
+  //             transform={isCalendarOpen ? "rotate(90deg)" : "rotate(270deg)"}
+  //           />
+  //         </Flex>
+  //       </Flex>
   //     );
-  // }
+  //   }
+  // );
 
   return (
     <Flex
@@ -120,6 +146,7 @@ export default function MyDatePicker() {
         onClose={() => setIsCalendarOpen(false)}
       >
         <PopoverTrigger>
+          {/* <CustomInput /> */}
           <Flex direction={"row"} gap={2} justifyContent={"space-evenly"}>
             <Button variant={"unstyled"} fontSize={"xl"} pt={4} pb={4}>
               {selected
@@ -154,7 +181,6 @@ export default function MyDatePicker() {
               showOutsideDays
               components={{
                 Weekday: WeekDayCustom,
-                // Chevron: ChevronCustom,
               }}
             />
           </Flex>

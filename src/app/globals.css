@@ -2,7 +2,7 @@ body {
   font-family: var(--font-roboto) !important;
 }
 
-.rdp-root {
+.rdp-root.rdp-root {
   --rdp-accent-color: #0066f1;
   --rdp-selected-border: #0066f1;
 }
@@ -61,5 +61,5 @@ body {
 .rdp-chevron {
   fill: gray;
   stroke: gray;
-  stroke-width: 1px;
+  stroke-width: 0.8px;
 }
