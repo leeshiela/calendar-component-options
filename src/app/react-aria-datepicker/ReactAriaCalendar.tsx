@@ -24,15 +24,13 @@ import {
   Heading,
 } from "react-aria-components";
 
-interface OptionsType {
-  day: string | undefined;
-  month: string | undefined;
-}
-
 export default function AriaCalendar() {
   let now = today(getLocalTimeZone());
   const [date, setDate] = useState<CalendarDate | undefined>(now);
-  const options: OptionsType = { day: "numeric", month: "short" };
+  const options: Intl.DateTimeFormatOptions = {
+    day: "numeric",
+    month: "short",
+  };
   const [isCalendarOpen, setIsCalendarOpen] = useState<boolean>(false);
   // const [selected, setSelected] = useState<Date | undefined>(now);
 
@@ -47,7 +45,11 @@ export default function AriaCalendar() {
   }, [isCalendarOpen]);
 
   const handleOnChange = (date: DateValue | undefined) => {
-    setDate(date);
+    if (date) {
+      setDate(date as CalendarDate);
+    } else {
+      setDate(undefined);
+    }
     setIsCalendarOpen(!isCalendarOpen);
   };
 
