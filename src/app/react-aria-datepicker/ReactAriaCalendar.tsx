@@ -4,8 +4,15 @@ import {
   getLocalTimeZone,
   today,
 } from "@internationalized/date";
-import { Flex, Text } from "@chakra-ui/react";
-import { useState } from "react";
+import {
+  Flex,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+  Portal,
+  Text,
+} from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 import {
   Button,
   Calendar,
@@ -13,6 +20,7 @@ import {
   CalendarGrid,
   CalendarGridHeader,
   CalendarHeaderCell,
+  DateValue,
   Heading,
 } from "react-aria-components";
 
@@ -25,46 +33,80 @@ export default function AriaCalendar() {
   let now = today(getLocalTimeZone());
   const [date, setDate] = useState<CalendarDate | undefined>(now);
   const options: OptionsType = { day: "numeric", month: "short" };
+  const [isCalendarOpen, setIsCalendarOpen] = useState<boolean>(false);
+  // const [selected, setSelected] = useState<Date | undefined>(now);
+
+  useEffect(() => {
+    if (isCalendarOpen) {
+      setIsCalendarOpen(true);
+      console.log("Calendar is open");
+    } else if (!isCalendarOpen) {
+      setIsCalendarOpen(false);
+      console.log("Calendar is closed");
+    }
+  }, [isCalendarOpen]);
+
+  const handleOnChange = (date: DateValue | undefined) => {
+    setDate(date);
+    setIsCalendarOpen(!isCalendarOpen);
+  };
 
   return (
     <Flex direction="column" alignItems="center" mt={6}>
       <Text fontSize="2xl" mb={6}>
         React Aria Calendar
       </Text>
-      <Flex>
-        <Text fontSize="3xl" mt={6} mb={6}>
-          {date
-            ? `${date
-                .toDate(getLocalTimeZone())
-                .toLocaleDateString("en-US", options)}`
-            : ``}
-        </Text>
-      </Flex>
-      <Calendar
-        aria-label="Reservation Date"
-        onChange={setDate}
-        minValue={now}
-        firstDayOfWeek="sun"
+      <Popover
+        isOpen={isCalendarOpen}
+        onOpen={() => setIsCalendarOpen(true)}
+        onClose={() => setIsCalendarOpen(false)}
+        placement="bottom"
       >
-        <header>
-          <Heading />
-
-          <Flex gap={10}>
-            <Button slot="previous">
-              <img className="arrows" src="/arrow.svg" alt="previous-arrow" />
-            </Button>
-            <Button slot="next">
-              <img
-                className="arrows"
-                style={{ transform: "rotate(180deg)" }}
-                src="/arrow.svg"
-                alt="next-arrow"
-              />
-            </Button>
+        <PopoverTrigger>
+          <Flex>
+            <Text fontSize="3xl" cursor={"pointer"} mt={6} mb={6}>
+              {date
+                ? `${date
+                    .toDate(getLocalTimeZone())
+                    .toLocaleDateString("en-US", options)}`
+                : ``}
+            </Text>
           </Flex>
-        </header>
-        <CalendarGrid>{(date) => <CalendarCell date={date} />}</CalendarGrid>
-      </Calendar>
+        </PopoverTrigger>
+        <Portal>
+          <PopoverContent minWidth={"fit-content"} borderWidth={0}>
+            <Calendar
+              aria-label="Reservation Date"
+              onChange={handleOnChange}
+              minValue={now}
+            >
+              <header>
+                <Heading />
+                <Flex gap={10}>
+                  <Button slot="previous">
+                    <img
+                      className="arrows"
+                      src="/arrow.svg"
+                      alt="previous-arrow"
+                    />
+                  </Button>
+                  <Button slot="next">
+                    <img
+                      className="arrows"
+                      style={{ transform: "rotate(180deg)" }}
+                      src="/arrow.svg"
+                      alt="next-arrow"
+                    />
+                  </Button>
+                </Flex>
+              </header>
+              <CalendarGrid>
+                {(date) => <CalendarCell date={date} />}
+              </CalendarGrid>
+            </Calendar>
+          </PopoverContent>
+        </Portal>
+      </Popover>
     </Flex>
   );
 }
