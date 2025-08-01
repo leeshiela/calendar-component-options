@@ -18,11 +18,6 @@ export default function MyDatePicker() {
   const [isCalendarOpen, setIsCalendarOpen] = useState<boolean>(false);
   const popoverRef = useRef(null);
 
-  // const options = {
-  //   month: "short",
-  //   day: "numeric",
-  // };
-
   useEffect(() => {
     if (isCalendarOpen) {
       setIsCalendarOpen(true);
@@ -33,11 +28,11 @@ export default function MyDatePicker() {
     }
   }, [isCalendarOpen]);
 
-  useEffect(() => {
-    if (popoverRef.current) {
-      popoverRef.current.focus();
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (popoverRef.current) {
+  //     popoverRef.current.focus();
+  //   }
+  // }, []);
 
   const handleSelect = (date: Date | undefined) => {
     setSelected(date);
