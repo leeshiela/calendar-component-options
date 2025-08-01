@@ -6,21 +6,22 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
+  Portal,
   Text,
 } from "@chakra-ui/react";
-import { FC, useEffect, useRef, useState } from "react";
+import { FC, forwardRef, useEffect, useRef, useState } from "react";
 import { DayPicker } from "react-day-picker";
 
 export default function MyDatePicker() {
   const todayDate = new Date();
   const [selected, setSelected] = useState<Date | undefined>(todayDate);
   const [isCalendarOpen, setIsCalendarOpen] = useState<boolean>(false);
-  // const popoverRef = useRef(null);
+  const popoverRef = useRef(null);
 
-  const options = {
-    month: "short",
-    day: "numeric",
-  };
+  // const options = {
+  //   month: "short",
+  //   day: "numeric",
+  // };
 
   useEffect(() => {
     if (isCalendarOpen) {
@@ -31,6 +32,12 @@ export default function MyDatePicker() {
       console.log("Calendar is closed");
     }
   }, [isCalendarOpen]);
+
+  useEffect(() => {
+    if (popoverRef.current) {
+      popoverRef.current.focus();
+    }
+  }, []);
 
   const handleSelect = (date: Date | undefined) => {
     setSelected(date);
@@ -100,34 +107,40 @@ export default function MyDatePicker() {
     }
   };
 
-  // const CustomInput = forwardRef<HtmlHTMLAttributes<HTMLDivElement>, any>(
-  //   (props, ref) => {
-  //     const options = {
-  //       month: "short",
-  //       day: "numeric",
-  //     };
+  const CustomInput = forwardRef<HTMLInputElement>((props, ref) => {
+    const options = {
+      month: "short",
+      day: "numeric",
+    };
 
-  //     return (
-  //       <Flex direction={"row"} gap={2} justifyContent={"space-evenly"} ref={ref}>
-  //         <Button variant={"unstyled"} fontSize={"xl"} pt={4} pb={4}>
-  //           {selected
-  //             ? `${selected.toLocaleDateString("en-US", options).toUpperCase()}`
-  //             : `${todayDate
-  //                 .toLocaleDateString("en-US", options)
-  //                 .toUpperCase()}`}
-  //         </Button>
-  //         <Flex alignItems={"end"}>
-  //           <Img
-  //             id="chevron-down-arrow"
-  //             src={"arrow.svg"}
-  //             alt="Chevron Down Arrow"
-  //             transform={isCalendarOpen ? "rotate(90deg)" : "rotate(270deg)"}
-  //           />
-  //         </Flex>
-  //       </Flex>
-  //     );
-  //   }
-  // );
+    return (
+      <Flex
+        direction={"row"}
+        gap={2}
+        justifyContent={"space-evenly"}
+        alignItems={"end"}
+        ref={ref}
+      >
+        <Button
+          variant={"unstyled"}
+          fontSize={"xl"}
+          pt={4}
+          pb={4}
+          onClick={() => setIsCalendarOpen(!isCalendarOpen)}
+        >
+          {selected
+            ? `${selected.toLocaleDateString("en-US", options).toUpperCase()}`
+            : `${todayDate.toLocaleDateString("en-US", options).toUpperCase()}`}
+        </Button>
+        <Img
+          id="chevron-down-arrow"
+          src={"arrow.svg"}
+          alt="Chevron Down Arrow"
+          transform={isCalendarOpen ? "rotate(90deg)" : "rotate(270deg)"}
+        />
+      </Flex>
+    );
+  });
 
   return (
     <Flex
@@ -144,47 +157,31 @@ export default function MyDatePicker() {
         isOpen={isCalendarOpen}
         onOpen={() => setIsCalendarOpen(true)}
         onClose={() => setIsCalendarOpen(false)}
+        placement="bottom"
       >
         <PopoverTrigger>
-          {/* <CustomInput /> */}
-          <Flex direction={"row"} gap={2} justifyContent={"space-evenly"}>
-            <Button variant={"unstyled"} fontSize={"xl"} pt={4} pb={4}>
-              {selected
-                ? `${selected
-                    .toLocaleDateString("en-US", options)
-                    .toUpperCase()}`
-                : `${todayDate
-                    .toLocaleDateString("en-US", options)
-                    .toUpperCase()}`}
-            </Button>
-            <Flex alignItems={"end"}>
-              <Img
-                id="chevron-down-arrow"
-                src={"arrow.svg"}
-                alt="Chevron Down Arrow"
-                transform={isCalendarOpen ? "rotate(90deg)" : "rotate(270deg)"}
+          <CustomInput ref={popoverRef} />
+        </PopoverTrigger>
+        <Portal>
+          <PopoverContent minWidth={"fit-content"} borderWidth={0}>
+            <Flex direction={"row"} pt={4}>
+              <DayPicker
+                captionLayout="label"
+                disabled={{ before: todayDate }}
+                navLayout="after"
+                mode="single"
+                selected={selected}
+                onSelect={handleSelect}
+                timeZone=""
+                weekStartsOn={0}
+                showOutsideDays
+                components={{
+                  Weekday: WeekDayCustom,
+                }}
               />
             </Flex>
-          </Flex>
-        </PopoverTrigger>
-        <PopoverContent borderWidth={0}>
-          <Flex direction={"row"} pt={4}>
-            <DayPicker
-              captionLayout="label"
-              disabled={{ before: todayDate }}
-              navLayout="after"
-              mode="single"
-              selected={selected}
-              onSelect={handleSelect}
-              timeZone=""
-              weekStartsOn={0}
-              showOutsideDays
-              components={{
-                Weekday: WeekDayCustom,
-              }}
-            />
-          </Flex>
-        </PopoverContent>
+          </PopoverContent>
+        </Portal>
       </Popover>
     </Flex>
   );
