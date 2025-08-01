@@ -9,7 +9,14 @@ import {
   Portal,
   Text,
 } from "@chakra-ui/react";
-import { FC, forwardRef, useEffect, useRef, useState } from "react";
+import {
+  FC,
+  forwardRef,
+  ThHTMLAttributes,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { DayPicker } from "react-day-picker";
 
 export default function MyDatePicker() {
@@ -38,10 +45,8 @@ export default function MyDatePicker() {
     setSelected(date);
     setIsCalendarOpen(!isCalendarOpen);
   };
-  const WeekDayCustom: FC<{
-    children: React.ReactNode;
-  }> = (props) => {
-    const { children } = props;
+  const WeekDayCustom: FC<ThHTMLAttributes<HTMLTableCellElement>> = (props) => {
+    const { children, ...rest } = props;
 
     let label: string;
 
@@ -74,6 +79,7 @@ export default function MyDatePicker() {
 
       return (
         <th
+          {...rest}
           style={{
             color: "gray",
             paddingBottom: "18px",
@@ -103,7 +109,7 @@ export default function MyDatePicker() {
   };
 
   const CustomInput = forwardRef<HTMLInputElement>((props, ref) => {
-    const options = {
+    const options: Intl.DateTimeFormatOptions = {
       month: "short",
       day: "numeric",
     };
@@ -163,7 +169,6 @@ export default function MyDatePicker() {
               <DayPicker
                 captionLayout="label"
                 disabled={{ before: todayDate }}
-                navLayout="after"
                 mode="single"
                 selected={selected}
                 onSelect={handleSelect}
