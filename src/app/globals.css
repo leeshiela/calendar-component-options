@@ -58,8 +58,8 @@ body {
   height: 24px;
 }
 
-.rdp-chevron {
+.rdp-chevron.rdp-chevron {
   fill: gray;
   stroke: gray;
-  stroke-width: 0.8px;
+  stroke-width: 0.5px;
 }

@@ -101,14 +101,14 @@ export default function MyDatePicker() {
   };
 
   // const CustomInput = forwardRef<HtmlHTMLAttributes<HTMLDivElement>, any>(
-  //   (props, popoverRef) => {
+  //   (props, ref) => {
   //     const options = {
   //       month: "short",
   //       day: "numeric",
   //     };
 
   //     return (
-  //       <Flex direction={"row"} gap={2} justifyContent={"space-evenly"}>
+  //       <Flex direction={"row"} gap={2} justifyContent={"space-evenly"} ref={ref}>
   //         <Button variant={"unstyled"} fontSize={"xl"} pt={4} pb={4}>
   //           {selected
   //             ? `${selected.toLocaleDateString("en-US", options).toUpperCase()}`
