@@ -35,12 +35,6 @@ export default function MyDatePicker() {
     }
   }, [isCalendarOpen]);
 
-  // useEffect(() => {
-  //   if (popoverRef.current) {
-  //     popoverRef.current.focus();
-  //   }
-  // }, []);
-
   const handleSelect = (date: Date | undefined) => {
     setSelected(date);
     setIsCalendarOpen(!isCalendarOpen);
@@ -115,39 +109,42 @@ export default function MyDatePicker() {
     };
 
     return (
-      <Flex
-        direction={"row"}
-        gap={2}
-        justifyContent={"space-evenly"}
-        alignItems={"end"}
-        ref={ref}
+      <Button
+        variant={"unstyled"}
+        fontSize={"xl"}
+        onClick={() => setIsCalendarOpen(!isCalendarOpen)}
       >
-        <Button
-          variant={"unstyled"}
-          fontSize={"xl"}
+        <Flex
+          direction={"row"}
+          gap={2}
+          justifyContent={"space-evenly"}
+          alignItems={"center"}
+          ref={ref}
           pt={4}
-          pb={4}
-          onClick={() => setIsCalendarOpen(!isCalendarOpen)}
         >
-          {selected
-            ? `${selected.toLocaleDateString("en-US", options).toUpperCase()}`
-            : `${todayDate.toLocaleDateString("en-US", options).toUpperCase()}`}
-        </Button>
-        <Img
-          id="chevron-down-arrow"
-          src={"arrow.svg"}
-          alt="Chevron Down Arrow"
-          transform={isCalendarOpen ? "rotate(90deg)" : "rotate(270deg)"}
-        />
-      </Flex>
+          <Text>
+            {selected
+              ? `${selected.toLocaleDateString("en-US", options).toUpperCase()}`
+              : `${todayDate
+                  .toLocaleDateString("en-US", options)
+                  .toUpperCase()}`}
+          </Text>
+          <Img
+            id="chevron-down-arrow"
+            src={"arrow.svg"}
+            alt="Chevron Down Arrow"
+            transform={isCalendarOpen ? "rotate(90deg)" : "rotate(270deg)"}
+          />
+        </Flex>
+      </Button>
     );
   });
 
   return (
     <Flex
       direction="column"
-      pt={8}
-      pb={8}
+      pt={2}
+      pb={2}
       pl={6}
       pr={6}
       alignItems="center"
@@ -163,25 +160,24 @@ export default function MyDatePicker() {
         <PopoverTrigger>
           <CustomInput ref={popoverRef} />
         </PopoverTrigger>
-        <Portal>
-          <PopoverContent minWidth={"fit-content"} borderWidth={0}>
-            <Flex direction={"row"} pt={4}>
-              <DayPicker
-                captionLayout="label"
-                disabled={{ before: todayDate }}
-                mode="single"
-                selected={selected}
-                onSelect={handleSelect}
-                timeZone=""
-                weekStartsOn={0}
-                showOutsideDays
-                components={{
-                  Weekday: WeekDayCustom,
-                }}
-              />
-            </Flex>
-          </PopoverContent>
-        </Portal>
+
+        <PopoverContent minWidth={"fit-content"} borderWidth={0}>
+          <Flex direction={"row"}>
+            <DayPicker
+              captionLayout="label"
+              disabled={{ before: todayDate }}
+              mode="single"
+              selected={selected}
+              onSelect={handleSelect}
+              timeZone=""
+              weekStartsOn={0}
+              showOutsideDays
+              components={{
+                Weekday: WeekDayCustom,
+              }}
+            />
+          </Flex>
+        </PopoverContent>
       </Popover>
     </Flex>
   );
