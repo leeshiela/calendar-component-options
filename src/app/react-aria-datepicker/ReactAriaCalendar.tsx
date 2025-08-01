@@ -6,6 +6,7 @@ import {
 } from "@internationalized/date";
 import {
   Flex,
+  Img,
   Popover,
   PopoverContent,
   PopoverTrigger,
@@ -32,7 +33,6 @@ export default function AriaCalendar() {
     month: "short",
   };
   const [isCalendarOpen, setIsCalendarOpen] = useState<boolean>(false);
-  // const [selected, setSelected] = useState<Date | undefined>(now);
 
   useEffect(() => {
     if (isCalendarOpen) {
@@ -65,15 +65,28 @@ export default function AriaCalendar() {
         placement="bottom"
       >
         <PopoverTrigger>
-          <Flex>
-            <Text fontSize="3xl" cursor={"pointer"} mt={6} mb={6}>
-              {date
-                ? `${date
-                    .toDate(getLocalTimeZone())
-                    .toLocaleDateString("en-US", options)}`
-                : ``}
-            </Text>
-          </Flex>
+          <Button onClick={() => setIsCalendarOpen(!isCalendarOpen)}>
+            <Flex
+              flexDirection={"row"}
+              gap={2}
+              justifyContent={"space-evenly"}
+              alignItems={"center"}
+            >
+              <Text fontSize="xl" pt={4} pb={4}>
+                {date
+                  ? `${date
+                      .toDate(getLocalTimeZone())
+                      .toLocaleDateString("en-US", options)}`
+                  : ``}
+              </Text>
+              <Img
+                id="chevron-down-arrow"
+                src="arrow.svg"
+                alt="chevron down arrow"
+                transform={isCalendarOpen ? "rotate(90deg)" : "rotate(270deg)"}
+              />
+            </Flex>
+          </Button>
         </PopoverTrigger>
         <Portal>
           <PopoverContent minWidth={"fit-content"} borderWidth={0}>

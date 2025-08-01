@@ -25,6 +25,7 @@ body {
       text-align: center;
       font-size: 20px;
       font-weight: 700;
+      letter-spacing: 1px;
     }
   }
 
@@ -78,6 +79,11 @@ body {
 }
 
 .arrows {
+  width: 24px;
+  height: 24px;
+}
+
+#chevron-down-arrow {
   width: 24px;
   height: 24px;
 }
