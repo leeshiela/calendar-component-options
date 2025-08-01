@@ -69,10 +69,15 @@ body {
     }
 
     &[data-selected] {
-      background: blue;
+      background: #0066f1;
       color: white;
       font-weight: 700;
       border-radius: 50%;
     }
   }
+}
+
+.arrows {
+  width: 24px;
+  height: 24px;
 }
