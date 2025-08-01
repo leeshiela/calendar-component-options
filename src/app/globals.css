@@ -87,3 +87,8 @@ body {
   width: 24px;
   height: 24px;
 }
+
+#custom-input {
+  font-size: 24px;
+  font-weight: 700;
+}

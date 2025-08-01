@@ -72,11 +72,12 @@ export default function AriaCalendar() {
               justifyContent={"space-evenly"}
               alignItems={"center"}
             >
-              <Text fontSize="xl" pt={4} pb={4}>
+              <Text id="custom-input" pt={4} pb={4}>
                 {date
                   ? `${date
                       .toDate(getLocalTimeZone())
-                      .toLocaleDateString("en-US", options)}`
+                      .toLocaleDateString("en-US", options)
+                      .toUpperCase()}`
                   : ``}
               </Text>
               <Img
