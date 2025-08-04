@@ -38,7 +38,8 @@ body {
 
   .react-aria-CalendarHeaderCell {
     padding-bottom: 18px;
-    font-weight: 250;
+    color: gray;
+    font-weight: 400;
   }
 
   .react-aria-CalendarCell {

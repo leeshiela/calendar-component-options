@@ -116,7 +116,7 @@ export default function AriaCalendar() {
                   </Button>
                 </Flex>
               </header>
-              <CalendarGrid>
+              <CalendarGrid weekdayStyle="short">
                 {(date) => <CalendarCell date={date} />}
               </CalendarGrid>
             </Calendar>
