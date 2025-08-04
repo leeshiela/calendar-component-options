@@ -27,16 +27,16 @@ body {
 .react-datepicker__day-names {
   background: white;
   border-top: 1px solid lightgray;
-  padding-top: 16px;
+  padding-top: 18px;
 }
 
 .customHeader {
   background: white;
-  padding-bottom: 16px;
+  padding-top: 8px;
 }
 
 .react-datepicker__day.react-datepicker__day--selected {
-  background: blue;
+  background: #0066f1;
   color: white;
   border-radius: 50%;
   font-weight: 700;
@@ -53,4 +53,5 @@ body {
 .react-datepicker__header.react-datepicker__header--custom {
   background: white;
   border-bottom: none;
+  padding: 0px;
 }
