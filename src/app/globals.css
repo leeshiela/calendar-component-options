@@ -53,8 +53,8 @@ body {
     forced-color-adjust: none;
     font-size: 20px;
 
-    &[data-outside-month] {
-      color: black;
+    &[data-outside-visible-range] {
+      display: none;
     }
 
     &[data-disabled] {
