@@ -12,6 +12,7 @@ import {
 import {
   FC,
   forwardRef,
+  JSX,
   ThHTMLAttributes,
   useEffect,
   useRef,
@@ -39,7 +40,9 @@ export default function MyDatePicker() {
     setSelected(date);
     setIsCalendarOpen(!isCalendarOpen);
   };
-  const WeekDayCustom: FC<ThHTMLAttributes<HTMLTableCellElement>> = (props) => {
+  const WeekDayCustom: (
+    props: ThHTMLAttributes<HTMLTableCellElement>
+  ) => JSX.Element = (props) => {
     const { children, ...rest } = props;
 
     let label: string;
@@ -86,19 +89,7 @@ export default function MyDatePicker() {
         </th>
       );
     } else {
-      return (
-        <th
-          style={{
-            color: "gray",
-            paddingBottom: "18px",
-            fontWeight: 400,
-            letterSpacing: "1px",
-            fontSize: "14px",
-          }}
-        >
-          {children}
-        </th>
-      );
+      return <></>;
     }
   };
 
