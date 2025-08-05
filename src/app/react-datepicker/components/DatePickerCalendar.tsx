@@ -119,6 +119,8 @@ const DatePickerCalendar = () => {
                 onClick={decreaseMonth}
                 paddingLeft={2}
                 paddingBottom={6}
+                tabIndex={0}
+                aria-label="previous month"
               >
                 <img className="arrows" src="/arrow.svg" alt="previous-arrow" />
               </Button>
@@ -127,6 +129,8 @@ const DatePickerCalendar = () => {
                 onClick={increaseMonth}
                 paddingLeft={2}
                 paddingBottom={6}
+                tabIndex={0}
+                aria-label="next month"
               >
                 <img
                   className="arrows"
