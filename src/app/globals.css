@@ -5,7 +5,7 @@ body {
 .react-aria-Calendar {
   width: auto;
   padding: 24px;
-  border: 1px solid lightgray;
+  border: 1px solid #b8b8b8;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   font-size: large;
@@ -15,7 +15,7 @@ body {
     display: flex;
     align-items: center;
     margin: 0px 16px;
-    border-bottom: 1px solid lightgray;
+    border-bottom: 1px solid #b8b8b8;
     justify-content: space-between;
     padding-bottom: 18px;
     margin-bottom: 18px;
@@ -38,7 +38,7 @@ body {
 
   .react-aria-CalendarHeaderCell {
     padding-bottom: 18px;
-    color: gray;
+    color: #757575;
     font-weight: 400;
   }
 
@@ -58,7 +58,7 @@ body {
     }
 
     &[data-disabled] {
-      color: lightgray;
+      color: #b8b8b8;
     }
 
     &[data-pressed] {
