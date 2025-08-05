@@ -29,10 +29,8 @@ export default function MyDatePicker() {
   useEffect(() => {
     if (isCalendarOpen) {
       setIsCalendarOpen(true);
-      console.log("Calendar is open");
     } else if (!isCalendarOpen) {
       setIsCalendarOpen(false);
-      console.log("Calendar is closed");
     }
   }, [isCalendarOpen]);
 
