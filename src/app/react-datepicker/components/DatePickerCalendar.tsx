@@ -1,29 +1,15 @@
-import {
-  Box,
-  Button,
-  Flex,
-  Heading,
-  Img,
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-  Text,
-} from "@chakra-ui/react";
-import React, { forwardRef, useEffect, useRef, useState } from "react";
-import DatePicker from "react-datepicker";
+import { Button, Flex, Heading, Img, Text } from "@chakra-ui/react";
+import React, { lazy, useEffect, useRef, useState } from "react";
+// import DatePicker from "react-datepicker";
 import dayjs from "dayjs";
 import "react-datepicker/dist/react-datepicker.css";
+
+const DatePicker = lazy(() => import("react-datepicker"));
 
 const DatePickerCalendar = () => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   const popoverRef = useRef(null);
-
-  useEffect(() => {
-    const initializeCalendar = async () => {
-      const;
-    };
-  }, []);
 
   useEffect(() => {
     if (isCalendarOpen) {
