@@ -11,6 +11,7 @@ import {
 } from "@chakra-ui/react";
 import {
   FC,
+  lazy,
   forwardRef,
   JSX,
   ThHTMLAttributes,
@@ -18,7 +19,11 @@ import {
   useRef,
   useState,
 } from "react";
-import { DayPicker } from "react-day-picker";
+// import { DayPicker } from "react-day-picker";
+
+const DayPicker = lazy(() =>
+  import("react-day-picker").then((module) => ({ default: module.DayPicker }))
+);
 
 export default function MyDatePicker() {
   const todayDate = new Date();
