@@ -13,29 +13,29 @@ import {
   Portal,
   Text,
 } from "@chakra-ui/react";
-import { lazy, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { DateValue } from "react-aria-components";
+import dynamic from "next/dynamic";
 
-const Button = lazy(() =>
+const Button = dynamic(() =>
   import("react-aria-components").then((module) => ({ default: module.Button }))
 );
-const Calendar = lazy(() =>
+const Calendar = dynamic(() =>
   import("react-aria-components").then((module) => ({
     default: module.Calendar,
   }))
 );
-const CalendarCell = lazy(() =>
+const CalendarCell = dynamic(() =>
   import("react-aria-components").then((module) => ({
     default: module.CalendarCell,
   }))
 );
-const CalendarGrid = lazy(() =>
+const CalendarGrid = dynamic(() =>
   import("react-aria-components").then((module) => ({
     default: module.CalendarGrid,
   }))
 );
-
-const Heading = lazy(() =>
+const Heading = dynamic(() =>
   import("react-aria-components").then((module) => ({
     default: module.Heading,
   }))
