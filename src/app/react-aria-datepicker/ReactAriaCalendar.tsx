@@ -13,17 +13,33 @@ import {
   Portal,
   Text,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-import {
-  Button,
-  Calendar,
-  CalendarCell,
-  CalendarGrid,
-  CalendarGridHeader,
-  CalendarHeaderCell,
-  DateValue,
-  Heading,
-} from "react-aria-components";
+import { lazy, useEffect, useState } from "react";
+import { DateValue } from "react-aria-components";
+
+const Button = lazy(() =>
+  import("react-aria-components").then((module) => ({ default: module.Button }))
+);
+const Calendar = lazy(() =>
+  import("react-aria-components").then((module) => ({
+    default: module.Calendar,
+  }))
+);
+const CalendarCell = lazy(() =>
+  import("react-aria-components").then((module) => ({
+    default: module.CalendarCell,
+  }))
+);
+const CalendarGrid = lazy(() =>
+  import("react-aria-components").then((module) => ({
+    default: module.CalendarGrid,
+  }))
+);
+
+const Heading = lazy(() =>
+  import("react-aria-components").then((module) => ({
+    default: module.Heading,
+  }))
+);
 
 export default function AriaCalendar() {
   let now = today(getLocalTimeZone());
